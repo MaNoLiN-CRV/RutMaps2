@@ -1,18 +1,15 @@
 import { createSlice} from "@reduxjs/toolkit";
 import Continent from "../../entities/continent";
-class MapState {
-    map?: Continent[];
-}
-
+import { Continents } from "../../entities/continents";
 export const mapSlice = createSlice({
     name: "map",
-    initialState: new MapState(),
+    initialState: new Continents(),
     reducers: {
       
-        setMap: (state: MapState, { payload } : { payload: Continent[] } ) => {
+        setMap: (state: Continents, { payload } : { payload: Continent[] } ) => {
             state.map = payload;
         },
-        addContinent: (state : MapState, { payload }: { payload: Continent } ) => {
+        addContinent: (state : Continents, { payload }: { payload: Continent } ) => {
             state.map?.push(payload);
         },
     },
