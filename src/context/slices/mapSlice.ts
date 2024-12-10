@@ -17,3 +17,5 @@ export const mapSlice = createSlice({
         },
     },
 });
+
+export const { setMap, addContinent } = mapSlice.actions;
