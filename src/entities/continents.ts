@@ -1,5 +1,8 @@
 import Continent from "./continent";
 
 export class Continents {
-    map?: Continent[];
+    map: Continent[];
+    constructor() {
+        this.map = [];
+    }
 }
