@@ -3,6 +3,7 @@ import React from 'react'
 import { StyleSheet,TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import Continent from '../entities/continent'
+import { ContinentEnum } from '../entities/continents'
 
 
 export default function ContinentComponent(continent : Continent) {

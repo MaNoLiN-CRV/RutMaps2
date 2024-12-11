@@ -1,24 +1,26 @@
-import { createSlice} from "@reduxjs/toolkit";
-import Continent from "../../entities/continent";
-import { Continents } from "../../entities/continents";
+import { createSlice } from "@reduxjs/toolkit";
+import Country from "../../entities/country";
 import { api } from "../../api/api";
+
 export const mapSlice = createSlice({
     name: "map",
-    initialState: new Continents(),
+    initialState: { 
+        countries: [] as Country[]
+    },
     reducers: {
-      
-        setMap: ( { map }: Continents, { payload } : { payload: Continent[] } ) => {
-            map = payload;
+        setCountries: ({ countries }: { countries: Country[] }, { payload }: { payload: Country[] }) => {
+            countries = payload;
         },
-        addContinent: ({ map } : Continents, { payload }: { payload: Continent } ) => {
-            map.push(payload);
+        addCountry: ({ countries }: { countries: Country[] }, { payload }: { payload: Country }) => {
+            countries.push(payload);
         },
     },
     extraReducers: (builder) => {
-        builder.addMatcher(api.endpoints.getCountries.matchFulfilled, ({ map } : Continents, { payload } : { payload: Continent[] }) => {
-            map = payload;
+        builder.addMatcher(api.endpoints.getCountries.matchFulfilled, ({ countries }: { countries: Country[] }, { payload }: { payload: Country[] }) => {
+            countries = payload;
         });
     }
 });
 
-export const { setMap, addContinent } = mapSlice.actions;
+
+export const { setCountries, addCountry } = mapSlice.actions;

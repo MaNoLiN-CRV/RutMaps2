@@ -1,8 +1,9 @@
-import Continent from "./continent";
-
-export class Continents {
-    map: Continent[];
-    constructor() {
-        this.map = [];
-    }
+export enum ContinentEnum {
+    Africa = "Africa",
+    Antarctica = "Antarctica",
+    Asia = "Asia",
+    Europe = "Europe",
+    NorthAmerica = "North America",
+    Oceania = "Oceania",
+    SouthAmerica = "South America",
 }

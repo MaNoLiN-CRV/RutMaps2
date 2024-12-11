@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Continents } from "../entities/continents"
 import Country from "../entities/country";
 import {CountryResponse } from "../entities/responses/countryResponse";
+import Coords from "../entities/coords";
+import { ContinentEnum } from "../entities/continents";
 export const api = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
@@ -14,18 +15,20 @@ export const api = createApi({
             query: () => "/all",
             transformResponse: (response: any) => {
                 return response.map((country: CountryResponse) => {
-                    return {
-                        name: country.name.common,
-                        capital: country.capital,
-                        language:  country.languages?.[Object.keys(country.languages)[0]],
-                        flag: country.flags.png,
-                        coords: {
-                            lat: country.latlng[0],
-                            lng: country.latlng[1]
-                        }
-                    };
+                    return new Country (
+                        country.name.common,
+                        country.capital?.[0],
+                        country.languages?.[Object.keys(country.languages)[0]],
+                        country.flags.png,
+                        new Coords(
+                            country.latlng[0],
+                            country.latlng[1]
+                        ),
+                        country.continents as unknown as ContinentEnum[]
+                );
                 }) as Country[];
             } 
         }),
     }),
 });
+export const { useGetCountriesQuery } = api;

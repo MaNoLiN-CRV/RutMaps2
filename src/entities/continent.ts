@@ -1,14 +1,14 @@
 import Country from "./country";
-
+import { ContinentEnum } from "./continents";
 export default class Continent {
-    name: string;
+    name: ContinentEnum;
     countries: Country[];
 
     /**
      * @param name The name of the continent
      * @param countries The countries which are part of this continent
      */
-    constructor(name: string, countries: Country[]) {
+    constructor(name: ContinentEnum, countries: Country[]) {
         this.name = name;
         this.countries = countries;
     }
