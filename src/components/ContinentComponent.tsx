@@ -5,13 +5,13 @@ import Icon from 'react-native-vector-icons/Feather'
 import Continent from '../entities/continent'
 
 
-export default function ContinentComponent({ name }: Continent) {
+export default function ContinentComponent(continent : Continent) {
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.iconContainer}>
         <Icon name="map-pin" size={24} color="black" />
       </View>
-      <Text style={styles.text}>{name}</Text>
+      <Text style={styles.text}>{continent.name}</Text>
     </TouchableOpacity>
   )
 }

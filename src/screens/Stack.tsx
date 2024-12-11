@@ -8,7 +8,7 @@ import CountryDetails from "./CountryDetails";
 /**
  * A stack navigator with routes to Home, Continent, Country, and CountryDetails
  */
-export default function StackNavigator() {
+export default function AppNavigator() {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
