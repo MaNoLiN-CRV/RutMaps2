@@ -3,15 +3,23 @@ import { StyleSheet } from "react-native";
 export const detailCardStyles = (theme: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.background,
+    backgroundColor: theme.background, 
     padding: 16,
   },
   card: {
     flexDirection: 'row',
-    backgroundColor: theme.cardBackground,
+    backgroundColor: theme.cardBackground, 
     borderRadius: 8,
     padding: 8,
     marginBottom: 16,
+    shadowColor: theme.shadow, 
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   left: {
     flex: 1,
@@ -23,12 +31,12 @@ export const detailCardStyles = (theme: any) => StyleSheet.create({
   name: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: theme.text,
+    color: theme.text, 
     marginBottom: 8,
   },
   detail: {
     fontSize: 16,
-    color: theme.detailText,
+    color: theme.detailText, 
     marginBottom: 4,
   },
   flag: {
@@ -43,6 +51,7 @@ export const detailCardStyles = (theme: any) => StyleSheet.create({
 export const mapStyle = (theme: any) => StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: theme.background, 
   },
   webview: {
     flex: 1,
@@ -56,66 +65,93 @@ export const countryComponentStyles = (theme: any) => StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: theme.buttonBackground,
   },
   icon: {
     width: 24,
     height: 24,
+    tintColor: theme.iconColor, 
   },
   text: {
     fontSize: 16,
-    color: theme.text,
+    color: theme.text, 
   },
 });
+
 // Styles for the ContinentComponent
 export const continentComponentStyles = (theme: any) => StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 10,
+    justifyContent: 'space-between',
     padding: 10,
-    backgroundColor: theme.background,
-    shadowColor: '#000',
+    margin: 10,
+    borderRadius: 10,
+    backgroundColor: theme.cardBackground, 
+    shadowColor: theme.shadow, 
     shadowOffset: {
-      width: 0,
-      height: 2,
+      width: 6,
+      height: 8,
+  
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    elevation:10,
   },
   iconContainer: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: theme.cardBackground,
+    backgroundColor: theme.iconBackground,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 10,
   },
   text: {
     fontSize: 16,
+    color: theme.text, 
+    fontWeight: 'bold',
   },
 });
+
 // Styles for the HomeScreen
 export const homeScreenStyles = (theme: any) => StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.cardBackground,
+    backgroundColor: theme.background, 
   },
   image: {
     width: 300,
     height: 300,
     marginBottom: 20,
     borderRadius: 150,
+    borderWidth: 2,
+    borderColor: theme.imageBorder,
   }, 
   text: {
     fontSize: 24,
     marginBottom: 20,
     color: theme.text,
   },
-
+  switchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  switchLabel: {
+    fontSize: 16,
+    color: theme.text, 
+    marginLeft: 8,
+  },
 });
+
+export const continentStyles = (theme: any) => StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.background,
+  },
+});
+
 

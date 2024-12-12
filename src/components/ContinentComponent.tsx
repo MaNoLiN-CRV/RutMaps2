@@ -38,9 +38,7 @@ export default function ContinentComponent({ navigation, region }: ContinentComp
       style={styles.container}
       onPress={() => navigation.navigate('Country', { countries: data })}
     >
-      <View style={styles.iconContainer}>
-        <Icon name="globe" size={24} color="black" />
-      </View>
+     
       <Text style={styles.text}>{region}</Text>
     </TouchableOpacity>
   );
