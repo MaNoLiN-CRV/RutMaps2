@@ -18,6 +18,10 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+/**
+ * The main app navigator. It provides a stack navigation between the Home, Continent, Country and CountryDetails screens.
+ * @returns A JSX element representing the app navigator.
+ */
 export default function AppNavigator() {
   return (
     <Stack.Navigator initialRouteName="Home">

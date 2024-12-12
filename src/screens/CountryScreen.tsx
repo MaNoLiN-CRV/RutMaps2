@@ -10,7 +10,7 @@ import { RootStackParamList } from './Stack';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Country'>;
 
-export default function CountryScreen( { navigation, route:{params:{countries}} }: Props ) {
+export default function CountryScreen( { navigation, route:{params:{ countries} } }: Props ) {
   console.log("Countries: " + countries);
   return (
     <View>

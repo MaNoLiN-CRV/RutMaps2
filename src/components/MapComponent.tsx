@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView, StyleSheet, View} from 'react-native'
+import { SafeAreaView, View} from 'react-native'
 import Coords from '../entities/coords';
 import {WebView} from 'react-native-webview';
+import { mapStyle } from './styles';
 /**
  * A component that displays a map with a single marker at the given location
  * @param location The location to render the marker at, as a Coords object
@@ -12,12 +13,11 @@ type Props = {
   map: string
 }
 export default function MapComponent({ map }: Props) {
-  console.log(map);
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={mapStyle.container}>
       <WebView
         source={{ uri: map }}
-        style={styles.webview}
+        style={mapStyle.webview}
         javaScriptEnabled={true}
         domStorageEnabled={true}
         startInLoadingState={true}
@@ -27,11 +27,4 @@ export default function MapComponent({ map }: Props) {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  webview: {
-    flex: 1,
-  },
-});
+
