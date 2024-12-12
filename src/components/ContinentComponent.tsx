@@ -6,7 +6,11 @@ import { useGetCountryByRegionQuery } from '../api/api'
 import { Region } from '../entities/continents'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../screens/Stack'
-import { continentComponentStyles } from './styles'
+import { continentComponentStyles } from '../style/styles'
+import { useSelector } from 'react-redux'
+
+
+
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Country'>;
 type ContinentComponentProps = {
@@ -16,27 +20,28 @@ type ContinentComponentProps = {
 
 export default function ContinentComponent({ navigation, region }: ContinentComponentProps) {
   const { data, isLoading, error } = useGetCountryByRegionQuery(region);
-
+  const theme = useSelector((state: any) => state.theme.theme);
+  const styles = continentComponentStyles(theme);
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return <Text style={styles.text}>Loading...</Text>;
   }
   if (error) {
     console.log(error);
-    return <Text>Error</Text>;
+    return <Text style={styles.text}>Error</Text>;
   }
   if (!data) {
-    return <Text>No data available</Text>;
+    return <Text style={styles.text}>No data available</Text>;
   }
 
   return (
     <TouchableOpacity
-      style={continentComponentStyles.container}
+      style={styles.container}
       onPress={() => navigation.navigate('Country', { countries: data })}
     >
-      <View style={continentComponentStyles.iconContainer}>
-        <Icon name="" size={24} color="black" />
+      <View style={styles.iconContainer}>
+        <Icon name="globe" size={24} color="black" />
       </View>
-      <Text style={continentComponentStyles.text}>{region}</Text>
+      <Text style={styles.text}>{region}</Text>
     </TouchableOpacity>
   );
 }

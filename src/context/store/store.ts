@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { api } from '../../api/api';
+import themeSlice from '../slices/themeSlice';
+
 
 export const appStore = configureStore({
   reducer: {
+    [themeSlice.name]: themeSlice.reducer,
     [api.reducerPath]: api.reducer
   },
   middleware: (getDefaultMiddleware) => {

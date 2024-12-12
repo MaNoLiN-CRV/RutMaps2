@@ -3,7 +3,9 @@ import React from 'react'
 import Country from '../entities/country'
 import MapComponent from './MapComponent'
 import { ScrollView } from 'react-native-gesture-handler'
-import { detailCardStyles } from './styles'
+import { detailCardStyles } from '../style/styles'
+import { useSelector } from 'react-redux'
+
 
 /**
  * A component that displays details about a country. It displays the country's name in a bigger font, followed by its capital, language, and flag. Finally, it also displays a map with the country's coordinates.
@@ -11,16 +13,18 @@ import { detailCardStyles } from './styles'
  * @returns {React.ReactElement} A React element representing the component
  */
 export default function CountryDetailsCard({ name, capital, language, flag, coords , map}: Country) {
+  const theme = useSelector((state: any) => state.theme.theme);
+  const styles = detailCardStyles(theme);
   return (
-    <View style={detailCardStyles.container}>
-      <View style={detailCardStyles.card}>
-        <View style={detailCardStyles.left}>
-          <Text style={detailCardStyles.name}>{name}</Text>
-          <Text style={detailCardStyles.detail}>Capital: {capital}</Text>
-          <Text style={detailCardStyles.detail}>Language: {language}</Text>
+    <View style={styles.container}>
+      <View style={styles.card}>
+        <View style={styles.left}>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.detail}>Capital: {capital}</Text>
+          <Text style={styles.detail}>Language: {language}</Text>
         </View>
-        <View style={detailCardStyles.right}>
-          <Image source={{ uri: flag }} style={detailCardStyles.flag} />
+        <View style={styles.right}>
+          <Image source={{ uri: flag }} style={styles.flag} />
         </View>
       </View>
         <MapComponent map={map} />
