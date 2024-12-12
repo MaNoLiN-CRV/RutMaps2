@@ -60,6 +60,7 @@ export const mapStyle = (theme: any) => StyleSheet.create({
 
 // Styles for the CountryComponent
 export const countryComponentStyles = (theme: any) => StyleSheet.create({
+ 
   button: {
     borderRadius: 10,
     padding: 10,

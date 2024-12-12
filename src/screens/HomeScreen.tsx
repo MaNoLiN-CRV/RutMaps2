@@ -1,8 +1,9 @@
 import { View, Text, Image, Switch, Pressable } from 'react-native';
 import React from 'react';
 import { homeScreenStyles } from '../style/styles';
-import { darkTheme, lightTheme, toggleTheme } from '../context/slices/themeSlice';
+import {toggleTheme } from '../context/slices/themeSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { darkTheme } from '../style/themes';
 
 export default function HomeScreen({ navigation }: any) {
   const theme = useSelector((state: any) => state.theme.theme);
