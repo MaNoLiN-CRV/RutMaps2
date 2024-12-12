@@ -9,7 +9,8 @@ import Coords from '../entities/coords';
  */
 export default function MapComponent(location : Coords) {
   return (
-    <LeafletView
+    <LeafletView 
+      
       mapMarkers={[
         {
           animation: {type: AnimationType.WAGGLE},

@@ -1,23 +1,22 @@
-import { FlatList, View, Text } from 'react-native'
-import React from 'react'
-import ContinentComponent from '../components/ContinentComponent'
-import { ContinentEnum } from '../entities/continents'
-import { useContinents } from '../hooks/useContinent'
-
-/**
- * A screen that displays a list of continents. Each item in the list displays the name of the continent, and when pressed, it navigates to the CountryScreen with the selected continent.
- * @returns {React.ReactElement} A React element representing the component
- */
-export default function ContinentScreen() {
-  const continents = useContinents();
- 
+import { FlatList, View, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import ContinentComponent from '../components/ContinentComponent';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppRootState } from '../context/store/store';
+import { Region } from '../entities/continents';
+import { useGetCountryByRegionQuery } from '../api/api';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from './Stack';
+type Props = NativeStackScreenProps<RootStackParamList, 'Continent'>;
+export default function ContinentScreen({ navigation }: Props) {
   return (
     <View>
       <FlatList
-        data={continents}
-        renderItem={renderItem => <ContinentComponent {...renderItem.item} />}
-        keyExtractor={item => item.name}
+        data={Object.values(Region)}
+        renderItem={({ item }) => <ContinentComponent navigation={navigation} region={item} />}
+        keyExtractor={(item) => item.toString()}
       />
     </View>
-  )
+  );
 }
+

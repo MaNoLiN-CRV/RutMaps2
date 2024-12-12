@@ -1,34 +1,32 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import Country from "../entities/country";
-import {CountryResponse } from "../entities/responses/countryResponse";
-import Coords from "../entities/coords";
-import { ContinentEnum } from "../entities/continents";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { CountryResponse } from '../entities/responses/countryResponse';
+import { Region } from '../entities/continents';
+import Country from '../entities/country';
+
 export const api = createApi({
-    reducerPath: "api",
-    baseQuery: fetchBaseQuery({
-        baseUrl: "https://restcountries.com/v3.1",
-    
+  reducerPath: 'api',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://restcountries.com/v3.1',
+  }),
+  endpoints: (builder) => ({
+    getCountryByRegion: builder.query({
+      query: ( region: Region) => '/region/' + region.toString(),
+      transformResponse: (response: any) => {
+        return response.map((country: CountryResponse) => ({
+          name: country.name.common,
+          capital: country?.capital?.[0] ?? 'unknown',
+          language: country?.languages?.[Object.keys(country.languages)[0]] ?? 'unknown',
+          flag: country.flags.png,
+          coords: {
+            lat: country.latlng[0],
+            lng: country.latlng[1],
+          },
+          region: country.region.toString(),
+        } )) as Country[];
+      },
+      
     }),
-    
-    endpoints: (builder) => ({
-        getCountries: builder.query({
-            query: () => "/all",
-            transformResponse: (response: any) => {
-                return response.map((country: CountryResponse) => {
-                    return new Country (
-                        country.name.common,
-                        country.capital?.[0],
-                        country.languages?.[Object.keys(country.languages)[0]],
-                        country.flags.png,
-                        new Coords(
-                            country.latlng[0],
-                            country.latlng[1]
-                        ),
-                        country.continents as unknown as ContinentEnum[]
-                );
-                }) as Country[];
-            } 
-        }),
-    }),
+  }),
 });
-export const { useGetCountriesQuery } = api;
+
+export const { useGetCountryByRegionQuery } = api;

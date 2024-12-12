@@ -1,20 +1,47 @@
-import { createStackNavigator } from "@react-navigation/stack";
-export const Stack = createStackNavigator();
-import React from 'react'
-import HomeScreen from "./HomeScreen";
-import CountryScreen from "./CountryScreen";
-import ContinentScreen from "./ContinentScreen";
-import CountryDetails from "./CountryDetails";
-/**
- * A stack navigator with routes to Home, Continent, Country, and CountryDetails
- */
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import HomeScreen from './HomeScreen';
+import CountryScreen from './CountryScreen';
+import ContinentScreen from './ContinentScreen';
+import CountryDetails from './CountryDetails';
+import Country from '../entities/country';
+import { Region } from '../entities/continents';
+
+
+export type RootStackParamList = {
+  Home: undefined; 
+  Continent: undefined;
+  Country: { countries: Country[] }; 
+  CountryDetails: { country: Country }; 
+};
+
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
 export default function AppNavigator() {
   return (
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Continent" component={ContinentScreen} />
-      <Stack.Screen name="Country" component={CountryScreen} />
-      <Stack.Screen name="CountryDetails" component={CountryDetails} />
+      <Stack.Screen 
+        name="Home" 
+        component={HomeScreen} 
+        options={{ title: 'Home' }} 
+      />
+      <Stack.Screen 
+        name="Continent" 
+        component={ContinentScreen} 
+        options={{ title: 'Continent' }}
+      />
+      <Stack.Screen 
+        name="Country" 
+        component={CountryScreen} 
+        options={{ title: 'Countries' }}
+      />
+      <Stack.Screen 
+        name="CountryDetails" 
+        component={CountryDetails} 
+        options={{ title: 'Country Details' }}
+      />
     </Stack.Navigator>
-  )
+  );
 }
+

@@ -3,12 +3,19 @@ import React from 'react'
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import Country from '../entities/country';
 import config from '../config/config';
+import { RootStackParamList } from '../screens/Stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const MinimalistButton = ( country: Country, { navigation }: any) => {
+type Props = {
+  navigation: any,
+  country: Country
+}
+
+const CountryComponent = (  { navigation , country} : Props) => {
   return (
-    <TouchableOpacity style={styles.button} onPressIn={ () => navigation.navigate('CountryDetails', country)}>
+    <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('CountryDetails', {country})}>
       <Image
-        source={{ uri: config.API_URL + country.flag }}
+        source={{ uri: country.flag }}
         style={styles.icon}
       />
       <Text style={styles.text}>{country.name}</Text>
@@ -34,4 +41,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MinimalistButton;
+
+
+export default CountryComponent;

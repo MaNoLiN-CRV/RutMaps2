@@ -18,6 +18,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import AppNavigator from './src/screens/Stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { appStore as store }  from './src/context/store/store';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 function App(): React.JSX.Element {
@@ -28,23 +32,14 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <AppNavigator />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+    <Provider store={store}>
+      <NavigationContainer> 
+        <AppNavigator />
+      </NavigationContainer>
+    </Provider>  
+    </GestureHandlerRootView>
+    
   );
 }
 
