@@ -22,6 +22,7 @@ export const api = createApi({
             lng: country.latlng[1],
           },
           region: country.region.toString(),
+          map: country.maps.openStreetMaps
         } )) as Country[];
       },
       

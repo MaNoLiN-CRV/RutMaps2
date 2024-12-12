@@ -8,9 +8,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'CountryDetails'>;
 
 export default function CountryDetails({ navigation, route: { params: { country } } }: Props) {
   return (
-    <View>
-      <Text>CountryDetails</Text>
+    
       <CountryDetailsCard {...country}/>
-    </View>
   )
 }
