@@ -135,6 +135,12 @@ export const homeScreenStyles = (theme: any) => StyleSheet.create({
     marginBottom: 20,
     color: theme.text,
   },
+  creditText: {
+    fontSize: 10,
+    color: theme.text,
+    marginTop: 90,
+    fontFamily: 'serif',
+  },
   switchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
